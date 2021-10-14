@@ -27,20 +27,23 @@
                     <h1 class="text-8xl text-center font-semibold">Hi ! I'm <span class="text-secondary" style="text-shadow: 5px 5px #333333;">William</span></h1>
                     <img class="mt-12 rounded-full mx-auto shadow-lg" src="/images/avatar.jpg" alt="" width="300px">
                     <div class="mt-12 text-2xl text-justify">
-                        I'm Software Architect, Dad of 3 beautiful boys.<br/>
-                        I love tech and share with community.<br/>
-                        My favorite language is PHP and I love play with the awesome Laravel framework.<br/><br/>
-                        You can follow my socials bellow. See you.
+                        Salut, je suis Architecte logiciel.<br/>
+                        Père de 3 ptits monstres !<br/>
+                        J'aime la tech et partager avec la communauté.<br/>
+                        C'est pourquoi j'ai créé <a class="font-bold text-secondary hover:underline" href="https://neoshift.tv">Neoshift TV</a>.<br/>
+                        J'y diffuse mes découvertes et mes développements sur mes projet persos.<br/>
+                        Essentiellement en PHP, souvent autour du framework Laravel.<br/>
+                        Je vous invite à me suivre sur les réseaux ! Ciao !
                     </div>
 
                     <div class="mt-12 mb-4 md:mb-0 grid grid-cols-3 justify-items-center text-3xl">
-                        <a href="https://twitter.com/williamsuppo" class="hover:shadow-lg rounded-full h-16 w-16 flex items-center justify-center bg-primary text-secondary">
+                        <a href="https://twitter.com/williamsuppo" class="hover:bg-secondary hover:text-primary rounded-full h-16 w-16 flex items-center justify-center bg-primary text-secondary">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="https://github.com/william-suppo" class="hover:shadow-lg rounded-full h-16 w-16 flex items-center justify-center bg-primary text-secondary">
+                        <a href="https://github.com/william-suppo" class="hover:bg-secondary hover:text-primary rounded-full h-16 w-16 flex items-center justify-center bg-primary text-secondary">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/william-suppo-188a01111/" class="hover:shadow-lg rounded-full h-16 w-16 flex items-center justify-center bg-primary text-secondary">
+                        <a href="https://www.linkedin.com/in/william-suppo-188a01111/" class="hover:bg-secondary hover:text-primary rounded-full h-16 w-16 flex items-center justify-center bg-primary text-secondary">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
