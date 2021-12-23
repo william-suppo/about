@@ -6,27 +6,124 @@ on:
       - '*'
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
+
+      - name: Install nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - name: Use cache node dependencies
+        uses: actions/cache@v2
+        id: node_modules-cache
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install node dependencies
+        if: steps.node_modules-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Build assets
+        run: npm run prod
+
+      - name: Save assets in cache
+        uses: actions/cache@v2
+        id: assets-cache
+        with:
+          path: |
+            public/mix-manifest.json
+            public/css
+            public/js
+          key: ${{ runner.OS }}-build-assets
+
       - name: Set PHP version
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
+
+      - name: Use cache composer dependencies
+        uses: actions/cache@v2
+        id: vendor-cache
+        with:
+          path: vendor
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+
       - name: Install composer dependencies
+        if: steps.vendor-cache.outputs.cache-hit != 'true'
         run: composer install --quiet --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set PHP version
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - name: Use cache composer dependencies
+        uses: actions/cache@v2
+        id: vendor-cache
+        with:
+          path: vendor
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+
       - name: Execute tests
         run: php vendor/bin/phpunit
+    needs: build
 
   deploy:
     runs-on: ubuntu-latest
-    needs: test
-
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy
-        uses: jbrooksuk/laravel-forge-action@v1.0.2
+
+      - name: Use cache composer dependencies
+        uses: actions/cache@v2
+        id: vendor-cache
         with:
-          trigger_url: ${{ secrets.TRIGGER_URL }}
+          path: vendor
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+
+      - name: Use cache assets
+        uses: actions/cache@v2
+        id: assets-cache
+        with:
+          path: |
+            public/mix-manifest.json
+            public/css
+            public/js
+          key: ${{ runner.OS }}-build-assets
+
+      - name: Copy .env
+        run: echo "$ENV_FILE_CONTENT" > .env
+        env:
+          ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
+
+      - name: Prepare ssh key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'placeholder'
+
+      - name: Adding known hosts
+        run: ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Sync working directory
+        run: >
+          rsync -az --stats --progress --chmod=D750,F640 \
+            --delete \
+            --exclude ".git*" \
+            --exclude "node_modules" \
+            --exclude "storage/app" \
+            --exclude "storage/logs" \
+            --exclude "storage/framework/cache/*" \
+            --exclude "storage/framework/sessions/*" \
+            --exclude "storage/framework/views/*" \
+            --exclude "storage/framework/testing/*" \
+            . "${{ secrets.REMOTE_USER }}"@"${{ secrets.REMOTE_HOST }}":"${{ secrets.WORKDIR }}/"
+    needs: test
