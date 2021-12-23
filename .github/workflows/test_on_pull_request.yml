@@ -38,6 +38,7 @@ jobs:
             public/mix-manifest.json
             public/css
             public/js
+            public/images
           key: ${{ runner.OS }}-build-assets
 
       - name: Set PHP version
