@@ -128,4 +128,7 @@ jobs:
             --exclude "storage/framework/views/*" \
             --exclude "storage/framework/testing/*" \
             . "${{ secrets.REMOTE_USER }}"@"${{ secrets.REMOTE_HOST }}":"${{ secrets.WORKDIR }}/"
+
+      - name: Reload PHP fpm
+        run: ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -C "/bin/sudo /usr/sbin/service php8.0-fpm reload"
     needs: test
