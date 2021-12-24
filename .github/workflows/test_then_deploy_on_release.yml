@@ -131,4 +131,7 @@ jobs:
 
       - name: Reload PHP fpm
         run: ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -C "/bin/sudo /usr/sbin/service php8.0-fpm reload"
+
+      - name: Run database migrations
+        run: ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -C "/bin/php8.0 ${{ secrets.WORKDIR }}/artisan migrate --force"
     needs: test
