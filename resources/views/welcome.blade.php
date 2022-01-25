@@ -21,33 +21,25 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="min-h-screen bg-repeat" style="background-image: url('/images/pattern.png')">
-            <div class="flex content-center flex-wrap min-h-screen">
-                <div class="w-2/3 md:w-1/3 mx-auto text-primary">
-                    <h1 class="text-8xl text-center font-semibold">Salut ! C'est <span class="text-secondary" style="text-shadow: 5px 5px #333333;">William</span></h1>
-                    <img class="mt-12 rounded-full mx-auto shadow-lg" src="/images/avatar.jpg" alt="" width="300px">
-                    <div class="mt-12 text-2xl text-justify">
-                        Je suis Architecte logiciel.<br/>
-                        Père de 3 ptits monstres !<br/>
-                        J'aime la tech et partager avec la communauté.<br/>
-                        C'est pourquoi j'ai créé <a class="font-bold text-secondary hover:underline" href="https://neoshift.tv">Neoshift TV</a>.<br/>
-                        J'y diffuse mes découvertes et mes développements sur mes projet persos.<br/>
-                        Essentiellement en PHP, souvent autour du framework Laravel.<br/>
-                        Je vous invite à me suivre sur les réseaux ! Ciao !
-                    </div>
-
-                    <div class="mt-12 mb-4 md:mb-0 grid grid-cols-3 justify-items-center text-3xl">
-                        <a href="https://twitter.com/williamsuppo" class="hover:bg-secondary hover:text-primary rounded-full h-16 w-16 flex items-center justify-center bg-primary text-secondary">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://github.com/william-suppo" class="hover:bg-secondary hover:text-primary rounded-full h-16 w-16 flex items-center justify-center bg-primary text-secondary">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/william-suppo-188a01111/" class="hover:bg-secondary hover:text-primary rounded-full h-16 w-16 flex items-center justify-center bg-primary text-secondary">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
+        <div class="min-h-screen flex flex-col">
+            <div class="flex flex-col md:flex-row content-center justify-center flex-grow">
+                <div class="mb-12 md:mb-0 md:mr-12 pt-4 md:pt-0 flex flex-col justify-center">
+                    <img class="rounded-full mx-auto shadow-lg" src="/images/avatar.jpg" alt="" width="300px">
                 </div>
+                <div class="text-2xl flex flex-col justify-center px-4 md:px-0 pb-4 md:pb-0">
+                    {!! $content !!}
+                </div>
+            </div>
+            <div class="py-8 flex justify-center text-3xl">
+                <a href="https://twitter.com/williamsuppo" class="mr-12 text-gray-300 hover:text-gray-500">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://github.com/william-suppo" class="mr-12 text-gray-300 hover:text-gray-500">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/william-suppo-188a01111/" class="text-gray-300 hover:text-gray-500">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}" defer></script>

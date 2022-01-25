@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Markdown */
+
+.heading-1 {
+    @apply text-7xl font-bold mb-4;
+}
+
+.heading-2 {
+    @apply text-5xl font-bold mb-4;
+}
+
+.heading-3 {
+    @apply text-3xl font-bold mb-4;
+}
+
+.paragraph {
+    @apply text-justify mb-4;
+}
+
+.list-block {
+    @apply mb-4 list-disc list-inside;
+}
+
+.list-block-ordered {
+    @apply mb-4 list-decimal list-inside;
+}
+
+.hyperlink {
+    @apply text-blue-500 hover:underline;
+}
+
+.code {
+    @apply bg-gray-100 px-2 py-1 mx-1;
+}
+
+.code-block  {
+    @apply mb-4 border border-gray-200;
+}
