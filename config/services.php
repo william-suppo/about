@@ -29,4 +29,10 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
+    'lfr' => [
+        'url' => env('LFR_URL'),
+        'author' => env('LFR_AUTHOR'),
+        'limit' => env('LFR_LIMIT'),
+    ],
 ];

@@ -4,13 +4,15 @@ namespace App\Services;
 
 use DOMDocument;
 use Exception;
-use Illuminate\Cache\Repository;
+use Illuminate\Cache\Repository as Cache;
+use Illuminate\Config\Repository as Config;
 use Illuminate\Http\Client\Factory;
 
 class PostRepository
 {
     public function __construct(
-        private Repository $cache,
+        private Cache   $cache,
+        private Config  $config,
         private Factory $http,
     ) {}
 
@@ -37,8 +39,8 @@ class PostRepository
                     'title' => $item->getElementsByTagName('title')->item(0)->nodeValue,
                     'description' => $item->getElementsByTagName('description')->item(0)->nodeValue,
                     'link' => $item->getElementsByTagName('link')->item(0)->nodeValue,
-                    'pubDate' => $item->getElementsByTagName('pubDate')->item(0)->nodeValue,
-                    'image' => 'https://picsum.photos/id/103/275/144',
+                    'publishedAt' => $item->getElementsByTagName('pubDate')->item(0)->nodeValue,
+                    'image' => $item->getElementsByTagName('enclosure')->item(0)->getAttribute('url'),
                 ]);
             }
 
@@ -52,7 +54,11 @@ class PostRepository
     {
         try {
             $response = $this->http->get(
-                'https://laravel-france.com/rss?author=William&limit=5'
+                $this->config->get('services.lfr.url'),
+                [
+                    'author' => $this->config->get('services.lfr.author'),
+                    'limit' => $this->config->get('services.lfr.limit')
+                ],
             );
 
             $response->throw();

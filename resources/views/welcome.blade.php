@@ -21,7 +21,7 @@
         </style>
     </head>
     <body style="font-family: 'PT Sans Narrow', sans-serif;" class="antialiased">
-        <img class="mt-12 mb-4 rounded-full h-40 w-40 mx-auto shadow-lg" src="https://i.pravatar.cc/250?img=65" alt="logo">
+        <img class="mt-12 mb-4 rounded-full h-40 w-40 mx-auto shadow-lg" src="/images/avatar.jpg" alt="logo">
         <div class="my-8 flex justify-center text-xl">
             <a href="https://twitter.com/williamsuppo" class="mr-8 text-primary hover:text-secondary">
                 <i class="fab fa-twitter"></i>
@@ -33,7 +33,7 @@
                 <i class="fab fa-linkedin-in"></i>
             </a>
         </div>
-        <div class="my-12 mx-auto md:w-1/2 px-4 md:px-0 flex flex-col justify-center md:px-0 pb-4 md:pb-0">
+        <div class="my-12 mx-auto md:w-1/3 px-4 md:px-0 flex flex-col justify-center md:px-0 pb-4 md:pb-0">
             <h3 class="text-3xl font-bold mb-4">Salut voyageur 👋</h3>
             <p class="mb-4 text-justify text-xl">
                 Je m'appelle William, je suis Lead développeur, expert PHP et Laravel.<br>
@@ -44,7 +44,7 @@
             </p>
             <p class="mb-4 text-justify text-xl">Je vous invite à me suivre sur <a class="text-primary hover:text-secondary underline" href="https://twitter.com/williamsuppo">Twitter</a> pour rester à l'affût de mes dernières news !</p>
         </div>
-        <div class="mx-auto md:w-1/2 px-4 md:px-0">
+        <div class="mx-auto md:w-1/3 px-4 md:px-0">
             <h3 class="text-3xl font-bold mb-4">Mes derniers articles 📰</h3>
             @foreach($posts as $post)
                 <article class="flex flex-col md:flex-row mb-4 pb-4 border-b border-gray-200">
