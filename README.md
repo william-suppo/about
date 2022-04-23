@@ -11,8 +11,5 @@ Un starter de projet Laravel.
 ## Lancer l'application
 
 ```bash
-cp .env.example .env
-docker-compose up --build -d
-docker-compose exec app composer up
-docker-compose exec app yarn install 
+make install
 ```
