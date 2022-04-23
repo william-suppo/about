@@ -30,6 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'bio' => env('BIO', 'nope')
-
+    'lfr' => [
+        'url' => env('LFR_URL'),
+        'author' => env('LFR_AUTHOR'),
+        'limit' => env('LFR_LIMIT'),
+    ],
 ];
