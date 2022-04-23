@@ -1,4 +1,6 @@
-![header](https://repository-images.githubusercontent.com/369639032/7a00e980-ba8c-11eb-9038-d0dda0c3cf7c)
+<p align="center">
+  <img src="/art/banner.png" alt="Banner">
+</p>
 
 ## A propos
 
